@@ -1,17 +1,43 @@
+# -----------------------------
 # Python
+# -----------------------------
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
+# -----------------------------
 # AWS
+# -----------------------------
 .aws/
 
+# -----------------------------
 # Environment
+# -----------------------------
 .env
 
+# -----------------------------
 # IDE
+# -----------------------------
 .vscode/
 .idea/
 
+# -----------------------------
 # OS
+# -----------------------------
 .DS_Store
 Thumbs.db
+
+# -----------------------------
+# Terraform
+# -----------------------------
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Keep terraform.tfvars ignored (contains secrets)
+terraform.tfvars
+
+# Keep provider lock file (recommended)
+!.terraform.lock.hcl
