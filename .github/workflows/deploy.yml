@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -27,16 +26,25 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Install zip
+        run: sudo apt-get update && sudo apt-get install -y zip unzip
+
       - name: Create Deployment Package
         run: |
+          mkdir -p build
           cd lambda
-          zip -r lambda.zip lambda_function.py
+          zip -r ../build/lambda.zip .
+
+      - name: Verify Deployment Package
+        run: |
+          ls -lh build
+          unzip -l build/lambda.zip
 
       - name: Deploy Lambda
         run: |
           aws lambda update-function-code \
             --function-name aws-cost-optimization-toolkit \
-            --zip-file fileb://lambda/lambda.zip
+            --zip-file fileb://build/lambda.zip
 
       - name: Wait for Deployment
         run: |
@@ -44,5 +52,4 @@ jobs:
             --function-name aws-cost-optimization-toolkit
 
       - name: Deployment Successful
-        run: |
-          echo "AWS Cloud Cost Guardian deployed successfully!"
+        run: echo "✅ AWS Cloud Cost Guardian deployed successfully!"
