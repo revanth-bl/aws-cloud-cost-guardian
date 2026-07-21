@@ -1,69 +1,146 @@
 # AWS Cloud Cost Guardian 🚀
 
-Automated AWS cost optimization solution that identifies and removes unused EBS snapshots using AWS Lambda.
+> **Automated AWS Cost Optimization using AWS Lambda, EventBridge, CloudWatch, SNS, Terraform, and GitHub Actions.**
 
-## 📌 Problem Statement
+![Architecture](architecture/architecture.png)
 
-AWS environments often accumulate unused EBS snapshots after EC2 instances are terminated.
+---
 
-These unused resources continue generating storage costs.
+# 📖 Overview
 
-Cloud Cost Guardian automatically detects stale snapshots, removes unnecessary resources, and sends a cleanup report through email.
+AWS Cloud Cost Guardian is a serverless automation project that helps reduce unnecessary AWS storage costs by identifying and deleting unused EBS snapshots.
+
+The solution runs automatically on a schedule, publishes CloudWatch metrics, sends email reports using SNS, and is deployed through a GitHub Actions CI/CD pipeline. Infrastructure is managed with Terraform.
+
+---
+
+# ✨ Features
+
+- Automated EBS snapshot cleanup
+- Dry Run mode
+- Keep=True tag protection
+- CloudWatch Metrics & Dashboard
+- CloudWatch Alarms
+- SNS Email Notifications
+- EventBridge Scheduling
+- Terraform Infrastructure as Code
+- GitHub Actions CI/CD
 
 ---
 
 # 🏗 Architecture
 
-
-![Architecture](architecture/architecture.png)
-
-
-Workflow:
-
-1. EventBridge triggers Lambda based on schedule.
-2. Lambda scans AWS EBS snapshots.
-3. Lambda identifies unused snapshots.
-4. Unused snapshots are deleted.
-5. Execution metrics are stored in CloudWatch.
-6. SNS sends cleanup report through email.
-
+```text
+GitHub
+   │
+GitHub Actions
+   │
+AWS Lambda
+   │
+EC2 / EBS
+   ├── Delete Unused Snapshots
+   ├── CloudWatch Metrics
+   └── SNS Email
+```
 
 ---
 
-# ☁ AWS Services Used
+# ☁ AWS Services
 
 | Service | Purpose |
-|-|-|
-| AWS Lambda | Automation logic |
-| Amazon EC2 | Source of EBS snapshots |
-| Amazon EBS | Snapshot management |
-| Amazon EventBridge | Scheduled execution |
-| Amazon SNS | Email notifications |
-| Amazon CloudWatch | Logs and monitoring |
-| AWS IAM | Permissions management |
-
+|----------|---------|
+| Lambda | Automation |
+| EC2 | Volume discovery |
+| EBS | Snapshot cleanup |
+| EventBridge | Scheduling |
+| SNS | Email |
+| CloudWatch | Monitoring |
+| IAM | Permissions |
+| Terraform | IaC |
+| GitHub Actions | CI/CD |
 
 ---
 
-# ⚙ Features
+# 📂 Project Structure
 
-✅ Automated snapshot cleanup
-
-✅ Dry-run testing mode
-
-✅ Protected snapshots using tags
-
-✅ Scheduled execution
-
-✅ Email notification reports
-
-✅ CloudWatch logging
-
+```text
+aws-cloud-cost-guardian/
+├── .github/workflows/deploy.yml
+├── architecture/
+├── docs/
+├── lambda/
+├── screenshots/
+├── terraform/
+└── README.md
+```
 
 ---
 
 # 🚀 Deployment Steps
 
-## 1. Create Lambda Function
+1. Create IAM Role & Policy
+2. Create Lambda Function
+3. Configure SNS Topic
+4. Configure EventBridge Schedule
+5. Configure CloudWatch Dashboard
+6. Configure CloudWatch Alarm
+7. Validate Terraform
+8. Push to GitHub
+9. GitHub Actions deploys Lambda automatically
 
-Upload Python cleanup script:
+---
+
+# 📸 Screenshots
+
+Replace the placeholders below with your screenshots.
+
+- Lambda Function
+- IAM Role
+- SNS Topic
+- EventBridge Scheduler
+- CloudWatch Dashboard
+- CloudWatch Alarm
+- GitHub Actions Success
+
+---
+
+# 🔄 CI/CD
+
+```text
+Developer
+   │
+Git Push
+   │
+GitHub Actions
+   │
+Package Lambda
+   │
+Deploy Lambda
+```
+
+---
+
+# 🧪 Testing
+
+- Lambda Test Event
+- EventBridge Trigger
+- CloudWatch Metrics
+- SNS Email
+- GitHub Actions Deployment
+
+---
+
+# 📈 Future Improvements
+
+- Multi-region support
+- Slack notifications
+- AWS Cost Explorer integration
+- AWS Organizations support
+
+---
+
+# 👨‍💻 Author
+
+**Revanth B**
+
+GitHub: https://github.com/revanth-bl
