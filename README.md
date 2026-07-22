@@ -13,6 +13,12 @@ AWS Cloud Cost Guardian is a serverless automation project that helps reduce unn
 The solution runs automatically on a schedule, publishes CloudWatch metrics, sends email reports using SNS, and is deployed through a GitHub Actions CI/CD pipeline. Infrastructure is managed with Terraform.
 
 ---
+> [!IMPORTANT]
+> **Project Status**
+>
+> This project has been successfully completed and validated. To prevent ongoing AWS costs, all cloud resources (Lambda, IAM Roles, EventBridge Scheduler, SNS Topic, CloudWatch resources, and test infrastructure) were removed after testing.
+>
+> The repository remains fully reproducible using the included Terraform configuration and deployment guide.
 
 # ✨ Features
 
